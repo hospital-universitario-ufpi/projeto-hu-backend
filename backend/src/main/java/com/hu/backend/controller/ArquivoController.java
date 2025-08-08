@@ -15,6 +15,8 @@ import com.hu.backend.dto.arquivos.ArquivoCreationDto;
 import com.hu.backend.dto.arquivos.ArquivoDto;
 import com.hu.backend.service.ArquivoService;
 
+import jakarta.validation.Valid;
+
 @RequestMapping
 @RestController
 public class ArquivoController {
@@ -35,7 +37,7 @@ public class ArquivoController {
     //======================== POST ========================
 
     @PostMapping(value = "/arquivo")
-    public ResponseEntity<ArquivoDto> create(@RequestBody ArquivoCreationDto arquivo) {
+    public ResponseEntity<ArquivoDto> create(@RequestBody @Valid ArquivoCreationDto arquivo) {
         return ResponseEntity.status(HttpStatus.CREATED).body(arquivoService.create(arquivo));
     }
 

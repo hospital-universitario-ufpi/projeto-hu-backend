@@ -35,7 +35,9 @@ public class GeneralControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGeneric(Exception ex) {
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno: " + ex.getMessage());
+        // Log the actual exception for debugging but don't expose it to the client
+        // logger.error("Internal server error", ex);
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno do servidor");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -33,12 +33,12 @@ public class SecurityConfig {
                         .requestMatchers(
                             new AntPathRequestMatcher("/auth/login"),
                             new AntPathRequestMatcher("/auth/register"),
-                            new AntPathRequestMatcher("/auth/validate"),
                             new AntPathRequestMatcher("/swagger-ui.html"),
                             new AntPathRequestMatcher("/swagger-ui/**"),
-                            new AntPathRequestMatcher("/v3/api-docs/**")
+                            new AntPathRequestMatcher("/v3/api-docs/**"),
+                            new AntPathRequestMatcher("/actuator/health")
                         ).permitAll()
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
